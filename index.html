@@ -3,118 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi persona favorita</title>
+    <title>Para mi reina ✨</title>
     <style>
         :root {
-            --primary: #ff4d6d;
-            --secondary: #ffb3c1;
-            --bg: #fff0f3;
+            --rosa-fuerte: #ff4d6d;
+            --rosa-claro: #ffb3c1;
+            --dorado: #ffd700;
+            --oscuro: #1a0a1a;
         }
 
-        body {
+        body, html {
             margin: 0;
             padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #2d0a1a 0%, #1a0a1a 100%);
+            font-family: 'Georgia', serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            background-color: var(--bg);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
         }
 
-        /* Fondo animado de corazones */
-        .hearts {
+        /* Estrellas parpadeantes */
+        .star {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: twinkle var(--duration) infinite;
         }
 
-        .heart {
-            position: absolute;
-            list-style: none;
-            display: block;
-            width: 20px;
-            height: 20px;
-            background: var(--primary);
-            animation: animate 25s linear infinite;
-            bottom: -150px;
-            opacity: 0.3;
-            clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z');
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
 
-        @keyframes animate {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
-        }
-
-        /* Tarjeta principal */
-        .card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        /* Contenedor de la carta */
+        .container {
+            position: relative;
+            z-index: 10;
             text-align: center;
-            z-index: 1;
-            max-width: 400px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            animation: fadeIn 2s ease-in;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 30px;
+            border: 2px solid rgba(255, 179, 193, 0.3);
+            box-shadow: 0 0 50px rgba(255, 77, 109, 0.2);
+            max-width: 85%;
+            animation: floatCard 4s ease-in-out infinite;
         }
 
-        h1 { color: var(--primary); margin-bottom: 1rem; }
-        p { color: #555; line-height: 1.6; font-size: 1.1rem; }
-        
-        .btn {
-            background: var(--primary);
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        h1 {
+            color: var(--rosa-claro);
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px var(--rosa-fuerte);
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: white;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .boton-magico {
+            background: var(--rosa-fuerte);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            border-radius: 50px;
             cursor: pointer;
-            text-decoration: none;
-            font-weight: bold;
-            transition: transform 0.3s;
-            display: inline-block;
-            margin-top: 1.5rem;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+            transition: 0.3s;
         }
 
-        .btn:hover { transform: scale(1.1); }
+        .boton-magico:hover {
+            transform: scale(1.1);
+            background: #ff758f;
+            box-shadow: 0 0 25px var(--rosa-fuerte);
+        }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Elementos flotantes (Corazones y Flores) */
+        .floating {
+            position: absolute;
+            pointer-events: none;
+            z-index: 5;
+            animation: rise var(--duration) linear infinite;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <div class="hearts" id="heartsContainer"></div>
+    <audio id="musica" loop>
+        <source src="https://www.chosic.com/wp-content/uploads/2021/04/And-So-It-Begins-Inspired-By-Crush-Piano-Melody.mp3" type="audio/mpeg">
+    </audio>
 
-    <div class="card">
-        <h1>Para carla ❤️</h1>
-        <p>Eres la casualidad más bonita que me ha pasado. Gracias por cada sonrisa, por cada momento y por ser tú.</p>
-        <p><i>"En un mundo lleno de gente, mis ojos siempre te buscan a ti."</i></p>
-        <button class="btn" onclick="lanzarConfeti()">¡Te quiero!</button>
+    <div id="stars"></div>
+    <div id="floating-elements"></div>
+
+    <div class="container">
+        <h1>Para la mujer de mi vida ❤️</h1>
+        <p>Desde que llegaste, mi mundo brilla más que todas estas estrellas juntas. Gracias por ser mi calma y mi alegría.</p>
+        <button class="boton-magico" onclick="activarTodo()">Tócame ✨</button>
     </div>
 
     <script>
-        // Generador de corazones en el fondo
-        const container = document.getElementById('heartsContainer');
-        for (let i = 0; i < 15; i++) {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.style.left = Math.random() * 100 + '%';
-            heart.style.animationDelay = Math.random() * 20 + 's';
-            heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
-            container.appendChild(heart);
+        // Crear estrellas
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3 + 'px';
+            star.style.width = size;
+            star.style.height = size;
+            star.style.top = Math.random() * 100 + '%';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
+            starsContainer.appendChild(star);
         }
 
-        function lanzarConfeti() {
-            alert("¡Eres lo mejor que me ha pasado! ✨");
+        // Crear corazones y flores flotantes
+        const elementsContainer = document.getElementById('floating-elements');
+        const icons = ['❤️', '🌸', '✨', '🌹', '💖', '🌷'];
+
+        function createFloating() {
+            const el = document.createElement('div');
+            el.className = 'floating';
+            el.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+            el.style.left = Math.random() * 100 + '%';
+            el.style.fontSize = Math.random() * 20 + 15 + 'px';
+            el.style.setProperty('--duration', Math.random() * 5 + 5 + 's');
+            elementsContainer.appendChild(el);
+
+            setTimeout(() => el.remove(), 10000);
+        }
+
+        setInterval(createFloating, 500);
+
+        function activarTodo() {
+            // Reproducir música
+            const audio = document.getElementById('musica');
+            audio.play();
+
+            // Mensaje especial
+            alert("Te amo muchísimo. Gracias por estar conmigo 🌹");
         }
     </script>
 </body>
